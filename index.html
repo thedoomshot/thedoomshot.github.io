@@ -11,17 +11,22 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black: #0a0a08;
-    --surface: #111110;
-    --surface2: #1a1a17;
-    --border: rgba(255,255,255,0.07);
-    --amber: #c8902a;
-    --amber-dim: #8a6018;
-    --tan: #b89a6e;
-    --muted-green: #4a5c3e;
-    --text-primary: #e8e4dc;
-    --text-secondary: #7a7568;
-    --text-tertiary: #3d3c38;
+    /* Black · white · orange. --orange is the single accent;
+       --amber/--amber-dim are kept as aliases so older rules still resolve. */
+    --black: #000000;
+    --surface: #0d0d0d;
+    --surface2: #171717;
+    --border: rgba(255,255,255,0.12);
+    --orange: #F47A38;
+    --orange-dim: #B0521F;
+    --amber: #F47A38;
+    --amber-dim: #B0521F;
+    --white: #FFFFFF;
+    --tan: #FFFFFF;
+    --text-primary: #FFFFFF;
+    --text-secondary: #A0A0A0;
+    --text-tertiary: #5C5C5C;
+    --text-dim: #A0A0A0;
   }
 
   html { scroll-behavior: smooth; }
@@ -44,7 +49,7 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events: none;
     z-index: 1000;
-    opacity: 0.4;
+    opacity: 0.22;
   }
 
   /* Ambient glow */
@@ -53,7 +58,7 @@
     width: 600px;
     height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(200,144,42,0.04) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(244,122,56,0.04) 0%, transparent 70%);
     pointer-events: none;
     transition: transform 0.8s ease;
     top: -200px;
@@ -78,6 +83,9 @@
   }
 
   .nav-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.4rem;
     letter-spacing: 0.15em;
@@ -85,8 +93,8 @@
     text-decoration: none;
   }
 
-  .nav-logo span {
-    color: var(--amber);
+  .nav-word span {
+    color: var(--orange);
   }
 
   .nav-link {
@@ -161,6 +169,7 @@
   .hero-cta {
     margin-top: 3rem;
     display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     align-items: center;
     opacity: 0;
@@ -389,7 +398,7 @@
 
   .music-link:hover {
     border-color: var(--amber-dim);
-    background: rgba(200,144,42,0.05);
+    background: rgba(244,122,56,0.05);
   }
 
   .music-link-icon {
@@ -811,13 +820,48 @@
 .setup { padding: 6rem 3rem; position: relative; z-index: 2; }
 .setup-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
 .setup-item { background: var(--black); padding: 2.5rem 2rem; min-height: 210px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; color: inherit; transition: background 0.2s; }
-.setup-item:not(.coming-soon):hover { background: rgba(200,144,42,0.06); }
+.setup-item:not(.coming-soon):hover { background: rgba(244,122,56,0.06); }
 .setup-item.coming-soon { opacity: 0.4; cursor: default; pointer-events: none; }
 .setup-category { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.5rem; }
 .setup-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.05em; color: var(--text-primary); margin-bottom: 0.75rem; line-height: 1; }
 .setup-desc { font-size: 0.75rem; color: var(--text-dim); line-height: 1.6; flex-grow: 1; }
 .setup-cta { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--amber); margin-top: 1.5rem; }
 .setup-disclaimer { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--text-dim); margin-top: 2rem; opacity: 0.5; }
+
+/* CREST */
+  .nav-crest { width: 28px; height: 28px; flex: none; }
+  .nav-word { white-space: nowrap; }
+  .ducks-crest { width: 104px; height: 104px; flex: none; }
+  .hero-crest { position: absolute; inset: 0; margin: auto; width: 46%; height: 46%; }
+
+/* DUCKS / GAME NIGHTS */
+  .ducks { padding: 6rem 3rem; position: relative; z-index: 2; scroll-margin-top: 90px; }
+  .ducks-head { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .ducks-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: 0.04em; line-height: 0.95; color: var(--text-primary); }
+  .ducks-title span { color: var(--amber); }
+  .ducks-badge { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--amber); border: 1px solid rgba(244,122,56,0.35); padding: 0.45rem 0.8rem; white-space: nowrap; }
+  .ducks-intro { font-size: 0.9rem; line-height: 1.8; color: var(--text-secondary); max-width: 62ch; margin-bottom: 2.5rem; }
+  .ducks-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 3.5rem; }
+  .ducks-stat { background: var(--black); padding: 1.75rem 1.5rem; }
+  .ducks-stat-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 0.6rem; }
+  .ducks-stat-value { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; letter-spacing: 0.04em; color: var(--text-primary); line-height: 1.05; }
+  .ducks-stat-sub { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.4rem; line-height: 1.5; }
+  .log-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .log-key { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--text-tertiary); }
+  .log-wrap { overflow-x: auto; border: 1px solid var(--border); }
+  .log-table { width: 100%; min-width: 560px; border-collapse: collapse; }
+  .log-table th { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-tertiary); text-align: left; padding: 0.9rem 1.25rem; border-bottom: 1px solid var(--border); background: var(--surface); font-weight: 400; }
+  .log-table td { font-size: 0.8rem; color: var(--text-primary); padding: 0.95rem 1.25rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .log-table tr:last-child td { border-bottom: none; }
+  .log-table tr:hover td { background: var(--surface); }
+  .log-date { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--tan); white-space: nowrap; }
+  .log-watch { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--amber); }
+  .log-result { font-family: 'DM Mono', monospace; font-size: 0.72rem; }
+  .log-result.win { color: var(--white); font-weight: 500; }
+  .log-result.loss { color: var(--text-secondary); }
+  .log-row.upcoming td { color: var(--text-secondary); }
+  .log-row.upcoming .log-watch, .log-row.upcoming .log-result { color: var(--text-tertiary); }
+  .ducks-note { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--text-tertiary); margin-top: 1.5rem; line-height: 1.7; }
 
 /* RESPONSIVE additions */
   @media (max-width: 900px) {
@@ -827,15 +871,50 @@
     .email-inner { grid-template-columns: 1fr; gap: 2rem; }
     .builds { padding: 4rem 1.5rem; }
     .builds-grid { grid-template-columns: 1fr; }
+    .ducks { padding: 4rem 1.5rem; }
+    .ducks-crest { width: 72px; height: 72px; }
+    .ducks-strip { grid-template-columns: 1fr; }
+    .setup { padding: 4rem 1.5rem; }
+    .setup-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
+
+<!-- ── DOOMSHOT CREST ──────────────────────────────────────────────
+     Original mark drawn for this site. Edit the paths here and every
+     placement (nav, hero, Game Nights) updates at once. -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <symbol id="dsCrest" viewBox="0 0 200 200">
+    <defs>
+      <path id="crestArcTop" d="M100,100 m-74,0 a74,74 0 0,1 148,0"/>
+      <path id="crestArcBot" d="M100,100 m-70,0 a70,70 0 0,0 140,0"/>
+    </defs>
+    <circle cx="100" cy="100" r="96" fill="#000000" stroke="#F47A38" stroke-width="4"/>
+    <circle cx="100" cy="100" r="88" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="1"/>
+    <g transform="translate(56,50)">
+      <path d="M30,96 C27,72 32,50 48,37 C57,29 72,31 76,41 L76,52 C74,60 66,65 57,63 C49,61 46,74 46,96 Z" fill="#FFFFFF"/>
+      <path d="M74,38 L100,42 C107,43.5 107,52.5 100,54 L74,57 Z" fill="#F47A38"/>
+      <line x1="79" y1="47.8" x2="100" y2="47.8" stroke="#000000" stroke-opacity="0.28" stroke-width="1.5"/>
+      <circle cx="66" cy="42" r="3.6" fill="#000000"/>
+    </g>
+    <rect x="72" y="146" width="56" height="3.5" rx="1.75" fill="#F47A38"/>
+    <circle cx="40" cy="132" r="3.6" fill="#F47A38"/>
+    <circle cx="160" cy="132" r="3.6" fill="#F47A38"/>
+    <text fill="#FFFFFF" font-family="'Bebas Neue', sans-serif" font-size="22" letter-spacing="5">
+      <textPath href="#crestArcTop" startOffset="50%" text-anchor="middle">DOOMSHOT</textPath>
+    </text>
+    <text fill="#F47A38" font-family="'Bebas Neue', sans-serif" font-size="14" letter-spacing="4">
+      <textPath href="#crestArcBot" startOffset="50%" text-anchor="middle">ANAHEIM</textPath>
+    </text>
+  </symbol>
+</svg>
+
 <div class="glow-orb" id="glowOrb"></div>
 
 <nav>
-  <a href="#" class="nav-logo">DOOM<span>SHOT</span></a>
+  <a href="#" class="nav-logo"><svg class="nav-crest" viewBox="0 0 200 200"><use href="#dsCrest"/></svg><span class="nav-word">DOOM<span>SHOT</span></span></a>
   <a href="https://x.com/thedoomshot" target="_blank" class="nav-link">@thedoomshot ↗</a>
 </nav>
 
@@ -847,12 +926,14 @@
       <span class="accent">SHOT</span>
     </h1>
     <p class="hero-tagline">
-      The Future. AI. <strong>Gear built to last.</strong><br>
-      Hockey. Coffee. Watches. Biohacking.<br><br>
+      Anaheim Ducks. <strong>Orange Alliance member.</strong><br>
+      A mechanical watch on the wrist for every home game.<br>
+      The Future. AI. Gear built to last. Coffee. Biohacking.<br><br>
       Opinions on the things worth having opinions on.
     </p>
     <div class="hero-cta">
       <a href="https://x.com/thedoomshot" target="_blank" class="btn-primary">Follow on X</a>
+      <a href="#ducks" class="btn-secondary">Game Nights</a>
       <a href="#listening" class="btn-secondary">What I'm Hearing</a>
     </div>
   </div>
@@ -861,54 +942,55 @@
     <div class="schematic">
       <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
         <!-- Outer ring -->
-        <circle cx="200" cy="200" r="170" stroke="rgba(200,144,42,0.15)" stroke-width="0.5" stroke-dasharray="4 8" class="rotate"/>
+        <circle cx="200" cy="200" r="170" stroke="rgba(244,122,56,0.15)" stroke-width="0.5" stroke-dasharray="4 8" class="rotate"/>
         <!-- Mid ring -->
-        <circle cx="200" cy="200" r="130" stroke="rgba(200,144,42,0.1)" stroke-width="0.5"/>
+        <circle cx="200" cy="200" r="130" stroke="rgba(244,122,56,0.1)" stroke-width="0.5"/>
         <!-- Inner ring -->
-        <circle cx="200" cy="200" r="80" stroke="rgba(200,144,42,0.2)" stroke-width="0.5" stroke-dasharray="2 6"/>
+        <circle cx="200" cy="200" r="80" stroke="rgba(244,122,56,0.2)" stroke-width="0.5" stroke-dasharray="2 6"/>
         <!-- Core -->
-        <circle cx="200" cy="200" r="4" fill="#c8902a" class="pulse"/>
+        <circle cx="200" cy="200" r="4" fill="#F47A38" class="pulse"/>
+        <use href="#dsCrest" x="118" y="118" width="164" height="164"/>
         <!-- Cross hairs -->
-        <line x1="200" y1="30" x2="200" y2="370" stroke="rgba(200,144,42,0.06)" stroke-width="0.5"/>
-        <line x1="30" y1="200" x2="370" y2="200" stroke="rgba(200,144,42,0.06)" stroke-width="0.5"/>
+        <line x1="200" y1="30" x2="200" y2="370" stroke="rgba(244,122,56,0.06)" stroke-width="0.5"/>
+        <line x1="30" y1="200" x2="370" y2="200" stroke="rgba(244,122,56,0.06)" stroke-width="0.5"/>
         <!-- Diagonal lines -->
-        <line x1="80" y1="80" x2="320" y2="320" stroke="rgba(200,144,42,0.04)" stroke-width="0.5"/>
-        <line x1="320" y1="80" x2="80" y2="320" stroke="rgba(200,144,42,0.04)" stroke-width="0.5"/>
+        <line x1="80" y1="80" x2="320" y2="320" stroke="rgba(244,122,56,0.04)" stroke-width="0.5"/>
+        <line x1="320" y1="80" x2="80" y2="320" stroke="rgba(244,122,56,0.04)" stroke-width="0.5"/>
         <!-- Target marks at compass points -->
-        <line x1="195" y1="28" x2="205" y2="28" stroke="#c8902a" stroke-width="1" opacity="0.5"/>
-        <line x1="195" y1="372" x2="205" y2="372" stroke="#c8902a" stroke-width="1" opacity="0.5"/>
-        <line x1="28" y1="195" x2="28" y2="205" stroke="#c8902a" stroke-width="1" opacity="0.5"/>
-        <line x1="372" y1="195" x2="372" y2="205" stroke="#c8902a" stroke-width="1" opacity="0.5"/>
+        <line x1="195" y1="28" x2="205" y2="28" stroke="#F47A38" stroke-width="1" opacity="0.5"/>
+        <line x1="195" y1="372" x2="205" y2="372" stroke="#F47A38" stroke-width="1" opacity="0.5"/>
+        <line x1="28" y1="195" x2="28" y2="205" stroke="#F47A38" stroke-width="1" opacity="0.5"/>
+        <line x1="372" y1="195" x2="372" y2="205" stroke="#F47A38" stroke-width="1" opacity="0.5"/>
         <!-- Circuit trace left -->
-        <path d="M 30 200 L 60 200 L 60 140 L 100 140 L 100 160" stroke="rgba(200,144,42,0.25)" stroke-width="0.75" fill="none"/>
-        <circle cx="100" cy="160" r="3" stroke="rgba(200,144,42,0.4)" stroke-width="0.75" fill="none"/>
+        <path d="M 30 200 L 60 200 L 60 140 L 100 140 L 100 160" stroke="rgba(244,122,56,0.25)" stroke-width="0.75" fill="none"/>
+        <circle cx="100" cy="160" r="3" stroke="rgba(244,122,56,0.4)" stroke-width="0.75" fill="none"/>
         <!-- Circuit trace right -->
-        <path d="M 370 200 L 340 200 L 340 260 L 300 260 L 300 240" stroke="rgba(200,144,42,0.25)" stroke-width="0.75" fill="none"/>
-        <circle cx="300" cy="240" r="3" stroke="rgba(200,144,42,0.4)" stroke-width="0.75" fill="none"/>
+        <path d="M 370 200 L 340 200 L 340 260 L 300 260 L 300 240" stroke="rgba(244,122,56,0.25)" stroke-width="0.75" fill="none"/>
+        <circle cx="300" cy="240" r="3" stroke="rgba(244,122,56,0.4)" stroke-width="0.75" fill="none"/>
         <!-- Circuit trace top -->
-        <path d="M 200 30 L 200 60 L 260 60 L 260 100" stroke="rgba(200,144,42,0.2)" stroke-width="0.75" fill="none"/>
-        <rect x="255" y="100" width="10" height="10" stroke="rgba(200,144,42,0.35)" stroke-width="0.75" fill="none"/>
+        <path d="M 200 30 L 200 60 L 260 60 L 260 100" stroke="rgba(244,122,56,0.2)" stroke-width="0.75" fill="none"/>
+        <rect x="255" y="100" width="10" height="10" stroke="rgba(244,122,56,0.35)" stroke-width="0.75" fill="none"/>
         <!-- Corner brackets -->
-        <path d="M 45 45 L 45 75 M 45 45 L 75 45" stroke="rgba(200,144,42,0.3)" stroke-width="1" fill="none"/>
-        <path d="M 355 45 L 355 75 M 355 45 L 325 45" stroke="rgba(200,144,42,0.3)" stroke-width="1" fill="none"/>
-        <path d="M 45 355 L 45 325 M 45 355 L 75 355" stroke="rgba(200,144,42,0.3)" stroke-width="1" fill="none"/>
-        <path d="M 355 355 L 355 325 M 355 355 L 325 355" stroke="rgba(200,144,42,0.3)" stroke-width="1" fill="none"/>
+        <path d="M 45 45 L 45 75 M 45 45 L 75 45" stroke="rgba(244,122,56,0.3)" stroke-width="1" fill="none"/>
+        <path d="M 355 45 L 355 75 M 355 45 L 325 45" stroke="rgba(244,122,56,0.3)" stroke-width="1" fill="none"/>
+        <path d="M 45 355 L 45 325 M 45 355 L 75 355" stroke="rgba(244,122,56,0.3)" stroke-width="1" fill="none"/>
+        <path d="M 355 355 L 355 325 M 355 355 L 325 355" stroke="rgba(244,122,56,0.3)" stroke-width="1" fill="none"/>
         <!-- Label ticks -->
-        <text x="56" y="43" fill="rgba(200,144,42,0.35)" font-family="'DM Mono', monospace" font-size="7" letter-spacing="0.1em">DS-001</text>
-        <text x="310" y="380" fill="rgba(200,144,42,0.35)" font-family="'DM Mono', monospace" font-size="7" letter-spacing="0.1em">2025.REV.A</text>
+        <text x="56" y="43" fill="rgba(244,122,56,0.35)" font-family="'DM Mono', monospace" font-size="7" letter-spacing="0.1em">DS-001</text>
+        <text x="310" y="380" fill="rgba(244,122,56,0.35)" font-family="'DM Mono', monospace" font-size="7" letter-spacing="0.1em">2025.REV.A</text>
         <!-- Floating data points -->
-        <circle cx="155" cy="120" r="2" fill="rgba(200,144,42,0.5)"/>
-        <line x1="155" y1="120" x2="140" y2="110" stroke="rgba(200,144,42,0.2)" stroke-width="0.5"/>
-        <text x="100" y="109" fill="rgba(200,144,42,0.3)" font-family="'DM Mono', monospace" font-size="6">THE FUTURE</text>
-        <circle cx="260" cy="150" r="2" fill="rgba(200,144,42,0.5)"/>
-        <line x1="260" y1="150" x2="275" y2="138" stroke="rgba(200,144,42,0.2)" stroke-width="0.5"/>
-        <text x="277" y="137" fill="rgba(200,144,42,0.3)" font-family="'DM Mono', monospace" font-size="6">AI/ML</text>
-        <circle cx="145" cy="268" r="2" fill="rgba(200,144,42,0.5)"/>
-        <line x1="145" y1="268" x2="128" y2="278" stroke="rgba(200,144,42,0.2)" stroke-width="0.5"/>
-        <text x="82" y="282" fill="rgba(200,144,42,0.3)" font-family="'DM Mono', monospace" font-size="6">BIOHACK</text>
-        <circle cx="258" cy="270" r="2" fill="rgba(200,144,42,0.5)"/>
-        <line x1="258" y1="270" x2="275" y2="280" stroke="rgba(200,144,42,0.2)" stroke-width="0.5"/>
-        <text x="277" y="284" fill="rgba(200,144,42,0.3)" font-family="'DM Mono', monospace" font-size="6">GEAR</text>
+        <circle cx="155" cy="120" r="2" fill="rgba(244,122,56,0.5)"/>
+        <line x1="155" y1="120" x2="140" y2="110" stroke="rgba(244,122,56,0.2)" stroke-width="0.5"/>
+        <text x="100" y="109" fill="rgba(244,122,56,0.3)" font-family="'DM Mono', monospace" font-size="6">THE FUTURE</text>
+        <circle cx="260" cy="150" r="2" fill="rgba(244,122,56,0.5)"/>
+        <line x1="260" y1="150" x2="275" y2="138" stroke="rgba(244,122,56,0.2)" stroke-width="0.5"/>
+        <text x="277" y="137" fill="rgba(244,122,56,0.3)" font-family="'DM Mono', monospace" font-size="6">AI/ML</text>
+        <circle cx="145" cy="268" r="2" fill="rgba(244,122,56,0.5)"/>
+        <line x1="145" y1="268" x2="128" y2="278" stroke="rgba(244,122,56,0.2)" stroke-width="0.5"/>
+        <text x="82" y="282" fill="rgba(244,122,56,0.3)" font-family="'DM Mono', monospace" font-size="6">BIOHACK</text>
+        <circle cx="258" cy="270" r="2" fill="rgba(244,122,56,0.5)"/>
+        <line x1="258" y1="270" x2="275" y2="280" stroke="rgba(244,122,56,0.2)" stroke-width="0.5"/>
+        <text x="277" y="284" fill="rgba(244,122,56,0.3)" font-family="'DM Mono', monospace" font-size="6">GEAR</text>
       </svg>
     </div>
   </div>
@@ -921,34 +1003,91 @@
   <div class="pillars-grid">
     <div class="pillar-item">
       <div class="pillar-number">01 —</div>
+      <div class="pillar-name">Hockey</div>
+      <div class="pillar-desc">Anaheim Ducks. Orange Alliance member — same seats, 42 home dates at Honda Center. Carlsson and Gauthier up front, a blue line rebuilt from scratch, and a room that finally knows what a playoff series feels like.</div>
+    </div>
+    <div class="pillar-item">
+      <div class="pillar-number">02 —</div>
+      <div class="pillar-name">Watches</div>
+      <div class="pillar-desc">Tudor Black Bay Pro. Laco Valencia. Timex Weekender. Mechanical and field watches — tools built to outlast the noise. One goes on the wrist for every game, and it gets logged.</div>
+    </div>
+    <div class="pillar-item">
+      <div class="pillar-number">03 —</div>
       <div class="pillar-name">The Future</div>
       <div class="pillar-desc">Orbital mechanics, reusable rockets, Optimus robots, lunar mass drivers, space compute. The moonshots that sound insane until they don't.</div>
     </div>
     <div class="pillar-item">
-      <div class="pillar-number">02 —</div>
+      <div class="pillar-number">04 —</div>
       <div class="pillar-name">AI + Tech</div>
       <div class="pillar-desc">Daily driver of the tools shaping how we think and work. No hype, just honest takes.</div>
     </div>
     <div class="pillar-item">
-      <div class="pillar-number">03 —</div>
+      <div class="pillar-number">05 —</div>
       <div class="pillar-name">Gear</div>
       <div class="pillar-desc">Buy once. Workwear, espresso machines, EDC. The muted palette. Things built with intent.</div>
     </div>
     <div class="pillar-item">
-      <div class="pillar-number">04 —</div>
-      <div class="pillar-name">Hockey</div>
-      <div class="pillar-desc">Ducks fan. The sport is better than people think. The analytics debate is more interesting than people admit.</div>
-    </div>
-    <div class="pillar-item">
-      <div class="pillar-number">05 —</div>
+      <div class="pillar-number">06 —</div>
       <div class="pillar-name">Biohacking</div>
       <div class="pillar-desc">Sleep, cold exposure, light, diet. Optimizing the hardware running all the other software.</div>
     </div>
-    <div class="pillar-item">
-      <div class="pillar-number">06 —</div>
-      <div class="pillar-name">Watches</div>
-      <div class="pillar-desc">Tudor Black Bay Pro. Laco Valencia. Timex Weekender. Mechanical and field watches — tools built to outlast the noise.</div>
+</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- DUCKS / GAME NIGHTS -->
+<section class="ducks" id="ducks">
+  <div class="section-label">Game nights</div>
+  <div class="ducks-head">
+    <svg class="ducks-crest" viewBox="0 0 200 200"><use href="#dsCrest"/></svg>
+    <h2 class="ducks-title">ANAHEIM <span>DUCKS</span></h2>
+    <div class="ducks-badge">Orange Alliance member</div>
+  </div>
+  <p class="ducks-intro">
+    Season member, not a bandwagon — same seats, 42 home dates a year at Honda Center. A mechanical watch goes on
+    the wrist for every one of them. The log below is what was worn and what happened. Tudor Black Bay Pro,
+    Laco Valencia, Timex Weekender in the rotation.
+  </p>
+
+  <div class="ducks-strip">
+    <div class="ducks-stat">
+      <div class="ducks-stat-label">// Home opener</div>
+      <div class="ducks-stat-value">Oct 4 vs Florida</div>
+      <div class="ducks-stat-sub">5:00 PM PT · Honda Center</div>
     </div>
+    <div class="ducks-stat">
+      <div class="ducks-stat-label">// The slate</div>
+      <div class="ducks-stat-value">84 games · 42 home</div>
+      <div class="ducks-stat-sub">First 84-game season since '93-94</div>
+    </div>
+    <div class="ducks-stat">
+      <div class="ducks-stat-label">// Freeway Faceoff</div>
+      <div class="ducks-stat-value">Nov 27 vs LA</div>
+      <div class="ducks-stat-sub">At home · the one that actually counts</div>
+    </div>
+    <div class="ducks-stat">
+      <div class="ducks-stat-label">// Home for the holidays</div>
+      <div class="ducks-stat-value">10 straight at home</div>
+      <div class="ducks-stat-sub">Dec 22 – Jan 14 · ties the franchise record</div>
+    </div>
+  </div>
+
+  <div class="log-head">
+    <div class="section-label" style="margin-bottom: 0;">Watch of the game</div>
+    <div class="log-key">// date · opponent · result · what was on the wrist</div>
+  </div>
+  <div class="log-wrap">
+    <table class="log-table">
+      <thead>
+        <tr><th>Date</th><th>Opponent</th><th>Result</th><th>Watch</th></tr>
+      </thead>
+      <tbody id="gameLogBody"></tbody>
+    </table>
+  </div>
+  <div class="ducks-note">
+    // Honda Center Encore renovation runs through 2027 — entrances, concessions and Lot 1 shift as the season goes.
+    Check your gate before you leave the house.
   </div>
 </section>
 
@@ -980,7 +1119,7 @@
         </a>
         <a href="https://x.com/thedoomshot" target="_blank" class="music-link">
           <div class="music-link-icon" style="background: var(--surface2); border: 1px solid var(--border);">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="fill:#c8902a;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="fill:#F47A38;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </div>
           <div class="music-link-text">
             <div class="music-link-title">@thedoomshot</div>
@@ -1020,17 +1159,17 @@
       <div class="now-item-sub">Biohacking · non-negotiable stack</div>
     </div>
     <div class="now-item">
-      <div class="now-item-label">// Following</div>
-      <div class="now-item-value">The Future</div>
-      <div class="now-item-sub">Rockets · robots · orbital compute</div>
+      <div class="now-item-label">// Wearing</div>
+      <div class="now-item-value">Tudor Black Bay Pro</div>
+      <div class="now-item-sub">Laco Valencia on the other days</div>
     </div>
     <div class="now-item">
       <div class="now-item-label">// Watching</div>
       <div class="now-item-value">Anaheim Ducks</div>
-      <div class="now-item-sub">Every game · rebuild arc</div>
+      <div class="now-item-sub">Orange Alliance member · 42 home dates</div>
     </div>
   </div>
-  <div class="now-updated">// Last updated: March 2026</div>
+  <div class="now-updated">// Last updated: August 2026</div>
 </section>
 
 <div class="section-divider"></div>
@@ -1072,11 +1211,11 @@
   <div class="setup-grid">
     <a href="https://razer.a9yw.net/0G9q13" target="_blank" rel="noopener" class="setup-item">
       <div><div class="setup-category">// Peripherals</div><div class="setup-name">Razer</div><div class="setup-desc">The gear on the desk. Mice, keyboards, headsets. Built for people who actually use their setup.</div></div>
-      <div class="setup-cta">Shop Razer \u2192</div>
+      <div class="setup-cta">Shop Razer →</div>
     </a>
     <a href="https://amzn.to/3PRX6Ql" target="_blank" rel="noopener" class="setup-item">
       <div><div class="setup-category">// Chair</div><div class="setup-name">Herman Miller Embody</div><div class="setup-desc">Best purchase I've made in a decade. Back pain gone. Worth every dollar.</div></div>
-      <div class="setup-cta">View on Amazon \u2192</div>
+      <div class="setup-cta">View on Amazon →</div>
     </a>
     <div class="setup-item coming-soon">
       <div><div class="setup-category">// Clothing</div><div class="setup-name">Huckberry</div><div class="setup-desc">Outdoor-inspired everyday wear. The kind of stuff that works whether you're in a meeting or on a trail.</div></div>
@@ -1092,7 +1231,7 @@
     </div>
     <a href="https://x.com/thedoomshot" target="_blank" rel="noopener" class="setup-item">
       <div><div class="setup-category">// Always Open</div><div class="setup-name">Ask on X</div><div class="setup-desc">Want to know what I'm running before you buy? DM me. I'll tell you straight.</div></div>
-      <div class="setup-cta">@thedoomshot \u2192</div>
+      <div class="setup-cta">@thedoomshot →</div>
     </a>
   </div>
   <div class="setup-disclaimer">// Some links above are affiliate links. I earn a small commission if you buy — at no extra cost to you. I only list what I actually use.</div>
@@ -1139,6 +1278,41 @@
 </footer>
 
 <script>
+  // ── WATCH OF THE GAME ─────────────────────────────────────────────
+  // One line per Ducks home game. Add the result and the watch after you get home.
+  // result: "W 4-2" / "L 1-3" / "" (blank = not played yet)
+  // watch:  "Tudor Black Bay Pro" / "Laco Valencia" / "Timex Weekender" / ""
+  // Copy this line, paste it at the top of the list, fill it in:
+  //   { date: "Oct 4",  opp: "Florida Panthers", result: "", watch: "" },
+  const GAME_LOG = [
+    { date: "Oct 4",  opp: "Florida Panthers",   result: "", watch: "" },
+    { date: "Oct 7",  opp: "Edmonton Oilers",    result: "", watch: "" },
+    { date: "Oct 13", opp: "Calgary Flames",     result: "", watch: "" },
+    { date: "Oct 16", opp: "Boston Bruins",      result: "", watch: "" },
+    { date: "Oct 27", opp: "Vancouver Canucks",  result: "", watch: "" },
+    { date: "Oct 29", opp: "Buffalo Sabres",     result: "", watch: "" },
+    { date: "Nov 1",  opp: "Ottawa Senators",    result: "", watch: "" },
+    { date: "Nov 8",  opp: "Pittsburgh Penguins",result: "", watch: "" },
+    { date: "Nov 11", opp: "Nashville Predators",result: "", watch: "" },
+    { date: "Nov 14", opp: "New York Islanders", result: "", watch: "" }
+  ];
+
+  function renderGameLog() {
+    const body = document.getElementById('gameLogBody');
+    if (!body) return;
+    body.innerHTML = GAME_LOG.map(g => {
+      const played = (g.result || '').trim().length > 0;
+      const rc = played ? (g.result.trim().toUpperCase().startsWith('W') ? 'win' : 'loss') : '';
+      return '<tr class="log-row' + (played ? '' : ' upcoming') + '">' +
+        '<td class="log-date">' + g.date + '</td>' +
+        '<td>' + g.opp + '</td>' +
+        '<td class="log-result ' + rc + '">' + (played ? g.result : '—') + '</td>' +
+        '<td class="log-watch">' + (g.watch ? g.watch : '—') + '</td>' +
+      '</tr>';
+    }).join('');
+  }
+  renderGameLog();
+
   // Subtle glow that follows mouse
   const orb = document.getElementById('glowOrb');
   document.addEventListener('mousemove', (e) => {
